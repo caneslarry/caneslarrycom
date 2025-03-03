@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "types": ["jest"],
+    "types": [
+      "jest"
+    ],
     "target": "esnext",
     "lib": [
       "dom",
@@ -13,7 +15,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "incremental": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -33,6 +35,5 @@
   ],
   "exclude": [
     "node_modules"
-  ],
-
+  ]
 }
