@@ -16,19 +16,19 @@ export default function Header() {
         {/* Contact Info */}
         <div className="flex items-center gap-4 text-sm">
           <a
-            href="mailto:your.email@example.com"
+            href="mailto:me@caneslarry.com"
             className="flex items-center gap-2 hover:text-blue-500"
           >
-            <FaEnvelope /> your.email@example.com
+            <FaEnvelope /> me@caneslarry.com
           </a>
           <a
-            href="tel:+123456789"
+            href="tel:+15615100447"
             className="flex items-center gap-2 hover:text-green-500"
           >
-            <FaPhone /> +1 (234) 567-890
+            <FaPhone /> +1 (561) 510-0447
           </a>
           <a
-            href="https://www.linkedin.com/in/yourprofile"
+            href="https://www.linkedin.com/in/larry.hussey"
             target="_blank"
             className="flex items-center gap-2 hover:text-blue-700"
             rel="noopener noreferrer"
@@ -36,7 +36,7 @@ export default function Header() {
             <FaLinkedin /> LinkedIn
           </a>
           <a
-            href="https://github.com/yourgithub"
+            href="https://github.com/caneslarry"
             target="_blank"
             className="flex items-center gap-2 hover:text-gray-500"
             rel="noopener noreferrer"

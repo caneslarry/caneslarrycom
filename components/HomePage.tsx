@@ -12,39 +12,7 @@ export default function HomePage() {
             enterprise-level software solutions, full-stack development, cloud
             solutions, and system architecture.
           </p>
-          {/* Contact Information */}
-          <section className="mt-4">
-            <p className="text-gray-700 dark:text-gray-300">
-              📍 <strong>West Palm Beach, FL</strong>
-            </p>
-            <p>
-              📧{' '}
-              <a
-                href="mailto:caneslarry@gmail.com"
-                className="text-blue-500 dark:text-blue-400 hover:underline"
-              >
-                caneslarry@gmail.com
-              </a>
-            </p>
-            <p>
-              🔗{' '}
-              <a
-                href="https://www.linkedin.com/in/larryhussey/"
-                className="text-blue-500 dark:text-blue-400 hover:underline"
-              >
-                LinkedIn
-              </a>
-            </p>
-            <p>
-              🖥{' '}
-              <a
-                href="https://github.com/caneslarry"
-                className="text-blue-500 dark:text-blue-400 hover:underline"
-              >
-                GitHub
-              </a>
-            </p>
-          </section>
+
           <Projects />
           <Skills />
         </div>
