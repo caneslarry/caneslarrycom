@@ -79,7 +79,7 @@ export default function Projects() {
           <motion.div
             key={project.title}
             whileHover={{ scale: 1.1 }}
-            className="p-6 bg-gray-800 rounded-lg text-center"
+            className="p-6  bg-gray-200 dark:bg-gray-800 rounded-lg text-center"
           >
             <img
               src={project.image}
