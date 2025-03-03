@@ -1,5 +1,4 @@
 import '../styles/globals.css';
-import ThemeToggle from '../components/ThemeToggle';
 
 export default function RootLayout({
   children,
@@ -8,10 +7,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <ThemeToggle />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

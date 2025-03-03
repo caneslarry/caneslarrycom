@@ -1,16 +1,20 @@
+import ThemeToggle from './ThemeToggle';
+
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6 flex flex-col items-center">
+      <ThemeToggle />
+
       {/* Header */}
-      <header className="text-3xl font-bold text-center py-4 border-b border-gray-300 dark:border-gray-700 w-full">
-        Senior Software Engineer
+      <header className="text-4xl font-bold text-center py-4 border-b border-gray-300 dark:border-gray-700 w-full">
+        Larry Hussey
       </header>
 
       {/* Main Content */}
       <main className="max-w-3xl w-full text-center mt-8">
         {/* Introduction */}
         <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white">
-          Larry Hussey
+          Senior Software Engineer
         </h1>
         <p className="mt-3 text-lg text-gray-600 dark:text-gray-300">
           Highly skilled Software Engineer with a proven track record in
