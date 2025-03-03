@@ -50,3 +50,4 @@ Thumbs.db
 # Miscellaneous
 *.log
 node_modules/.cache/
+/out/
