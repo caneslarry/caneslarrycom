@@ -1,9 +1,9 @@
-name: Deploy React App to FastComet
+name: Deploy Next.js App to FastComet
 
 on:
   push:
     branches:
-      - master
+      - main  # Ensure this matches your actual branch
 
 jobs:
   build:
@@ -15,8 +15,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build React App
-        run: npm run build
+      - name: Build Next.js App
+        run: |
+          npm run build
+          npm run export
 
       - name: Deploy to FastComet via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
@@ -24,5 +26,5 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./build/
-          server-dir: /
+          local-dir: ./out/  # Use "out" because "next export" generates static files here
+          server-dir: /  # Change this to your FastComet public directory
