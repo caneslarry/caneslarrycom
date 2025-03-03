@@ -1,4 +1,4 @@
-name: Deploy React App to FastComet
+name: Deploy Next.js 15 App to FastComet
 
 on:
   push:
@@ -15,18 +15,24 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Run Lint Check (ESLint)
+        run: npm run lint
+
+      - name: Run Prettier Check
+        run: npm run format --check
+
       - name: Run Jest Tests
         run: npm test
 
-      - name: Build React App
+      - name: Build Next.js App
         run: npm run build
 
       - name: Deploy to FastComet via FTP
-        if: success()  # Deploy only if tests pass
+        if: success()  # ✅ Deploy only if all previous steps pass
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./build/
+          local-dir: .build/  # ✅ Next.js build output directory
           server-dir: /
