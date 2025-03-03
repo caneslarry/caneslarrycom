@@ -3,7 +3,7 @@ name: Deploy Next.js App to FastComet
 on:
   push:
     branches:
-      - main  # Ensure this matches your actual branch
+      - master
 
 jobs:
   build:
