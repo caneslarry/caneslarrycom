@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import { describe } from 'node:test';
 import HomePage from '../components/HomePage';
 
 describe('Home Page', () => {
