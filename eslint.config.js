@@ -54,6 +54,10 @@ export default [
         describe: 'readonly', // ✅ Jest global
         beforeEach: 'readonly', // ✅ Jest global
         afterEach: 'readonly', // ✅ Jest global
+        clearInterval: 'readonly', // ✅ Fix: Recognize clearInterval as a global function
+        setInterval: 'readonly', // ✅ Ensure setInterval is also recognized
+        setTimeout: 'readonly', // ✅ Include setTimeout for consistency
+        clearTimeout: 'readonly', // ✅ Include clearTimeout for consistency
       },
     },
     plugins: {

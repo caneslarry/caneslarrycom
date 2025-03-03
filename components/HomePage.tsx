@@ -1,72 +1,54 @@
-import ThemeToggle from './ThemeToggle';
+import Skills from './Skills';
+import Projects from './Projects';
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6 flex flex-col items-center">
-      <ThemeToggle />
-
-      {/* Header */}
-      <header className="text-4xl font-bold text-center py-4 border-b border-gray-300 dark:border-gray-700 w-full">
-        Larry Hussey
-      </header>
-
       {/* Main Content */}
-      <main className="max-w-3xl w-full text-center mt-8">
-        {/* Introduction */}
-        <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white">
-          Senior Software Engineer
-        </h1>
-        <p className="mt-3 text-lg text-gray-600 dark:text-gray-300">
-          Highly skilled Software Engineer with a proven track record in
-          enterprise-level software solutions, full-stack development, cloud
-          solutions, and system architecture.
-        </p>
-
-        {/* Contact Information */}
-        <section className="mt-4">
-          <p className="text-gray-700 dark:text-gray-300">
-            📍 <strong>West Palm Beach, FL</strong>
+      <main className="max-w-3xl w-full text-center">
+        <div>
+          <p className="text-lg text-gray-600 dark:text-gray-300">
+            Highly skilled Software Engineer with a proven track record in
+            enterprise-level software solutions, full-stack development, cloud
+            solutions, and system architecture.
           </p>
-          <p>
-            📧{' '}
-            <a
-              href="mailto:caneslarry@gmail.com"
-              className="text-blue-500 dark:text-blue-400 hover:underline"
-            >
-              caneslarry@gmail.com
-            </a>
-          </p>
-          <p>
-            🔗{' '}
-            <a
-              href="https://www.linkedin.com/in/larryhussey/"
-              className="text-blue-500 dark:text-blue-400 hover:underline"
-            >
-              LinkedIn
-            </a>
-          </p>
-          <p>
-            🖥{' '}
-            <a
-              href="https://github.com/caneslarry"
-              className="text-blue-500 dark:text-blue-400 hover:underline"
-            >
-              GitHub
-            </a>
-          </p>
-        </section>
-
-        {/* Skills Section */}
-        <section className="mt-6 text-left">
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white border-b pb-2 border-gray-300 dark:border-gray-700">
-            Skills
-          </h2>
-          <p className="mt-2 text-gray-700 dark:text-gray-300">
-            JavaScript, TypeScript, React, Node.js, Python, AWS, CI/CD, PHP,
-            Symfony, Laravel, Vue.js, GraphQL, PostgreSQL, MySQL, Tailwind,
-            Jest, Playwright.
-          </p>
-        </section>
+          {/* Contact Information */}
+          <section className="mt-4">
+            <p className="text-gray-700 dark:text-gray-300">
+              📍 <strong>West Palm Beach, FL</strong>
+            </p>
+            <p>
+              📧{' '}
+              <a
+                href="mailto:caneslarry@gmail.com"
+                className="text-blue-500 dark:text-blue-400 hover:underline"
+              >
+                caneslarry@gmail.com
+              </a>
+            </p>
+            <p>
+              🔗{' '}
+              <a
+                href="https://www.linkedin.com/in/larryhussey/"
+                className="text-blue-500 dark:text-blue-400 hover:underline"
+              >
+                LinkedIn
+              </a>
+            </p>
+            <p>
+              🖥{' '}
+              <a
+                href="https://github.com/caneslarry"
+                className="text-blue-500 dark:text-blue-400 hover:underline"
+              >
+                GitHub
+              </a>
+            </p>
+          </section>
+          <Projects />
+          <Skills />
+        </div>
+        <h2 className="text-4xl font-bold text-center mb-6">My Resume</h2>
 
         {/* Work Experience Section */}
         <section className="mt-6 text-left">
