@@ -51,6 +51,7 @@ export default [
         localStorage: 'readonly', // ✅ Fix: React is now recognized globally
         it: 'readonly', // ✅ Jest global
         expect: 'readonly', // ✅ Jest global
+        fetch: 'readonly', // ✅ Jest global
         describe: 'readonly', // ✅ Jest global
         beforeEach: 'readonly', // ✅ Jest global
         afterEach: 'readonly', // ✅ Jest global
