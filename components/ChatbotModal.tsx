@@ -71,7 +71,7 @@ export default function ChatbotModal() {
           <div className="fixed inset-0 flex items-center justify-center p-4">
             <Dialog.Panel className="w-full max-w-lg bg-white rounded-lg shadow-lg p-4">
               <Dialog.Title className="text-lg font-bold">
-                Chat with AI
+                Chat with LarryAI
               </Dialog.Title>
 
               <div className="h-64 overflow-y-auto border-b pb-2">
