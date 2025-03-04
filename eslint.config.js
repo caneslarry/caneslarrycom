@@ -48,9 +48,11 @@ export default [
         document: 'readonly', // ✅ Browser global
         navigator: 'readonly', // ✅ Browser global
         React: 'readonly', // ✅ Fix: React is now recognized globally
+        console: 'readonly', // ✅ Fix: React is now recognized globally
         localStorage: 'readonly', // ✅ Fix: React is now recognized globally
         it: 'readonly', // ✅ Jest global
         expect: 'readonly', // ✅ Jest global
+        Request: 'readonly', // ✅ Jest global
         fetch: 'readonly', // ✅ Jest global
         describe: 'readonly', // ✅ Jest global
         beforeEach: 'readonly', // ✅ Jest global

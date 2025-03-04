@@ -7,6 +7,7 @@ import {
   FaGithub,
   FaMapMarkerAlt,
 } from 'react-icons/fa';
+import ChatbotModal from './ChatbotModal';
 
 export default function Header() {
   return (
@@ -58,6 +59,7 @@ export default function Header() {
       <div className="pt-24">
         <Hero />
       </div>
+      <ChatbotModal />
     </div>
   );
 }

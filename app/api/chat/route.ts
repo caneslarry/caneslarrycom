@@ -1,15 +1,9 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method Not Allowed' });
-  }
-
-  const { message } = req.body;
-  const OPENAI_API_KEY = '123'; //process.env.OPENAI_API_KEY;
+export async function POST(req: Request) {
+  const { message } = await req.json();
+  const OPENAI_API_KEY =
+    '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';
 
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -27,5 +21,5 @@ export default async function handler(
   });
 
   const data = await response.json();
-  res.status(200).json(data);
+  return NextResponse.json(data);
 }
