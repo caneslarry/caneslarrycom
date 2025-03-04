@@ -16,7 +16,7 @@ export default function HomePage() {
           <Projects />
           <Skills />
         </div>
-        <h2 className="text-4xl font-bold text-center mb-6">My Resume</h2>
+        <h2 className="text-4xl font-bold text-center m-8">My Resume</h2>
 
         {/* Work Experience Section */}
         <section className="mt-6 text-left">
