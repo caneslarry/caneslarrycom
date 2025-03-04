@@ -9,7 +9,7 @@ export default async function handler(
   }
 
   const { message } = req.body;
-  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  const OPENAI_API_KEY = '123'; //process.env.OPENAI_API_KEY;
 
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
