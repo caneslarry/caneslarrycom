@@ -38,7 +38,11 @@ export default function ChatbotModal() {
     } catch (error) {
       setMessages([
         ...newMessages,
-        { role: 'assistant', content: 'Error: Unable to fetch response.' },
+        {
+          role: 'assistant',
+          // @ts-ignore
+          content: 'Error: Unable to fetch response.' + error.message,
+        },
       ]);
     }
   };
