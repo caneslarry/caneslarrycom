@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const projects = [
   {
@@ -47,46 +47,46 @@ const projects = [
   },
 ];
 
-const categories = ['All', 'Full-Stack', 'AI', 'Frontend'];
-
 export default function Projects() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-
-  const filteredProjects =
-    selectedCategory === 'All'
-      ? projects
-      : projects.filter((p) => p.category === selectedCategory);
+  const [activeProject, setActiveProject] = useState<string | null>(null);
 
   return (
-    <div className="p-10 ">
-      <h2 className="text-4xl font-bold text-center">My Projects</h2>
-      <div className="flex justify-center mt-5">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setSelectedCategory(cat)}
-            className={`px-4 py-2 mx-2 border rounded ${
-              selectedCategory === cat ? 'bg-blue-500' : 'border-gray-700'
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
+    <div className="p-6">
+      <h2 className="text-4xl font-bold text-center m-8">My Experience</h2>
 
+      {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-        {filteredProjects.map((project) => (
+        {projects.map((project) => (
           <motion.div
             key={project.title}
-            whileHover={{ scale: 1.1 }}
-            className="p-6  bg-gray-200 dark:bg-gray-800 rounded-lg text-center"
+            whileHover={{ scale: 1.05 }}
+            className="relative p-6 bg-gray-200 dark:bg-gray-800 rounded-lg text-center overflow-hidden"
+            onMouseEnter={() => setActiveProject(project.title)}
+            onMouseLeave={() => setActiveProject(null)}
           >
+            {/* Project Image */}
             <img
               src={project.image}
               alt={project.title}
               className="rounded-lg w-full h-40 object-cover"
             />
-            <h3 className="mt-3 text-xl">{project.title}</h3>
+
+            {/* Project Title */}
+            <h3 className="mt-3 text-xl font-semibold">{project.title}</h3>
+
+            {/* Hover Modal */}
+            <AnimatePresence>
+              {activeProject === project.title && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-90 text-white p-4 transition-all duration-300 rounded-lg"
+                >
+                  <p className="text-sm">{project.description}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         ))}
       </div>

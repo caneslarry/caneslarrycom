@@ -19,13 +19,15 @@ export default function Header() {
             href="mailto:me@caneslarry.com"
             className="flex items-center gap-2 hover:text-blue-500"
           >
-            <FaEnvelope /> me@caneslarry.com
+            <FaEnvelope />
+            <span className={`hidden md:block`}>me@caneslarry.com</span>
           </a>
           <a
             href="tel:+15615100447"
             className="flex items-center gap-2 hover:text-green-500"
           >
-            <FaPhone /> +1 (561) 510-0447
+            <FaPhone />{' '}
+            <span className={`hidden md:block`}>+1 (561) 510-0447</span>
           </a>
           <a
             href="https://www.linkedin.com/in/larry.hussey"
@@ -33,7 +35,7 @@ export default function Header() {
             className="flex items-center gap-2 hover:text-blue-700"
             rel="noopener noreferrer"
           >
-            <FaLinkedin /> LinkedIn
+            <FaLinkedin /> <span className={`hidden md:block`}>LinkedIn</span>
           </a>
           <a
             href="https://github.com/caneslarry"
@@ -41,10 +43,10 @@ export default function Header() {
             className="flex items-center gap-2 hover:text-gray-500"
             rel="noopener noreferrer"
           >
-            <FaGithub /> GitHub
+            <FaGithub /> <span className={`hidden md:block`}>GitHub</span>
           </a>
           <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-            <FaMapMarkerAlt /> West Palm Beach, FL
+            <FaMapMarkerAlt /> Palm Beach, FL
           </div>
         </div>
 

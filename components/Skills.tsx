@@ -51,8 +51,8 @@ const skills = [
 
 export default function Skills() {
   return (
-    <div className="p-10 flex flex-col items-center">
-      <h2 className="text-4xl font-bold text-center mb-6">My Skills</h2>
+    <div className="flex flex-col items-center">
+      <h2 className="text-4xl font-bold text-center m-8">My Skills</h2>
       <div className="flex flex-wrap justify-center gap-3 max-w-4xl">
         {skills.map((skill) => (
           <div
