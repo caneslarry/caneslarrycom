@@ -47,6 +47,7 @@ const skills = [
   'Next.js',
   'WordPress',
   'Salesforce Integration',
+  'Vercel',
 ];
 
 export default function Skills() {
