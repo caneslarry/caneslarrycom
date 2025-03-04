@@ -52,7 +52,7 @@ export default function ChatbotModal() {
       {/* Floating Chat Icon */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition"
+        className="fixed bottom-6 right-6 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition  z-[60]"
       >
         <MessageCircle className="w-6 h-6" />
       </button>

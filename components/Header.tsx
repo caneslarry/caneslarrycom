@@ -47,7 +47,8 @@ export default function Header() {
             <FaGithub /> <span className={`hidden md:block`}>GitHub</span>
           </a>
           <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-            <FaMapMarkerAlt /> Palm Beach, FL
+            <FaMapMarkerAlt />
+            <span className={`hidden md:block`}>Palm Beach,</span> FL
           </div>
         </div>
 

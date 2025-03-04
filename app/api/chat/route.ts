@@ -2,9 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   const { message } = await req.json();
-  const OPENAI_API_KEY =
-    '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';
-
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {

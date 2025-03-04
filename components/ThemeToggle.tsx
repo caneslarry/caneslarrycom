@@ -19,12 +19,24 @@ export default function ThemeToggle() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  const lightMode = () => (
+    <div className={`flex`}>
+      <span>☀️</span>
+      <span className={`hidden md:block  pl-2.5`}>Light Mode</span>
+    </div>
+  );
+  const darkMode = () => (
+    <div className={`flex`}>
+      <span>🌙 </span>
+      <span className={`hidden md:block  pl-2.5`}> Dark Mode</span>
+    </div>
+  );
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       className="p-2 rounded-md bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white"
     >
-      {theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode'}
+      {theme === 'dark' ? lightMode() : darkMode()}
     </button>
   );
 }
