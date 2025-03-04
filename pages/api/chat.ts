@@ -9,9 +9,7 @@ export default async function handler(
   }
 
   const { message } = req.body;
-  //const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-  const OPENAI_API_KEY =
-    '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';
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
