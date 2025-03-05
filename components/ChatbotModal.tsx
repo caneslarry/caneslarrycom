@@ -80,7 +80,7 @@ export default function ChatbotModal() {
                     key={index}
                     className={`p-2 my-1 ${msg.role === 'user' ? 'text-right' : 'text-left'}`}
                   >
-                    <strong>{msg.role === 'user' ? 'You' : 'Bot'}:</strong>{' '}
+                    <strong>{msg.role === 'user' ? 'You' : 'LarryAI'}:</strong>{' '}
                     {msg.content}
                   </div>
                 ))}
