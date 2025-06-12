@@ -4,6 +4,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const projects = [
   {
+    title: 'LiveBTCNow.com',
+    category: 'API Development',
+    image: '/livebtcnow.png',
+    description:
+      'A real-time Bitcoin tracker with live price charts, market trends, and AI-powered financial insights.',
+  },
+  {
+    title: 'QuickMealPlan.com',
+    category: 'AI & Data Visualization',
+    image: '/quickmealplan.png',
+    description:
+      'An AI-powered meal planner that builds custom menus, grocery lists, and nutrition insights in seconds.',
+  },
+  {
     title: 'Dealer Portal - AI Dashboard',
     category: 'AI & Data Visualization',
     image: '/A_futuristic_AI-driven_dashboard_with_real-time_da.webp',
