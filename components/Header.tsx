@@ -22,7 +22,7 @@ export default function Header() {
               className="flex items-center justify-center gap-2 hover:text-blue-500"
             >
               <FaEnvelope />
-              <span className="hidden md:block">me@caneslarry.com</span>
+              <span className="hidden md:block">lawrencehussey@gmail.com</span>
             </a>
             <a
               href="tel:+15615100447"
