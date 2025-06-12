@@ -32,7 +32,7 @@ export default function Header() {
               <span className="hidden md:block">+1 (561) 510-0447</span>
             </a>
             <a
-              href="https://www.linkedin.com/in/larry.hussey"
+              href="https://www.linkedin.com/in/larryhussey/"
               target="_blank"
               className="flex items-center justify-center gap-2 hover:text-blue-700"
               rel="noopener noreferrer"
