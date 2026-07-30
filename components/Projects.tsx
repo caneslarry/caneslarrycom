@@ -66,7 +66,9 @@ export default function Projects() {
 
   return (
     <div className="p-6">
-      <h2 className="text-4xl font-bold text-center m-8">My Experience</h2>
+      <h2 className="text-4xl font-bold text-center m-8">
+        My Enginnering Experience
+      </h2>
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
