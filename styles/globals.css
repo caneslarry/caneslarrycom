@@ -1,3 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: #020617;
+  }
+
+  body {
+    min-width: 320px;
+    background:
+      radial-gradient(
+        circle at 10% 0%,
+        rgba(8, 145, 178, 0.08),
+        transparent 28rem
+      ),
+      #020617;
+    color: #cbd5e1;
+    font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgba(34, 211, 238, 0.3);
+    color: white;
+  }
+
+  :focus-visible {
+    outline: 2px solid #22d3ee;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Manrope', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .section-shell {
+    @apply mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28;
+  }
+
+  .section-heading {
+    @apply grid gap-6 lg:grid-cols-[1fr_0.75fr] lg:items-end lg:gap-16;
+  }
+
+  .section-title {
+    @apply font-display mt-3 max-w-3xl text-4xl font-bold leading-tight tracking-[-0.035em] text-white sm:text-5xl lg:text-6xl;
+  }
+
+  .section-intro {
+    @apply max-w-xl text-base leading-7 text-slate-400 sm:text-lg sm:leading-8;
+  }
+
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.2em] text-cyan-400;
+  }
+
+  .glass-card {
+    @apply rounded-2xl border border-white/10 bg-white/[0.035] shadow-2xl shadow-black/10 backdrop-blur;
+  }
+
+  .project-card {
+    @apply rounded-3xl border border-white/10 bg-white/[0.025] p-3 transition duration-300 hover:border-cyan-400/20 hover:bg-white/[0.045];
+  }
+
+  .tech-tag {
+    @apply rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-slate-300;
+  }
+
+  .button-primary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3 text-sm font-bold text-slate-950 shadow-lg shadow-cyan-500/10 transition hover:-translate-y-0.5 hover:bg-cyan-300;
+  }
+
+  .button-secondary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.08];
+  }
+
+  .icon-button {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-slate-300 transition hover:border-cyan-400/30 hover:bg-cyan-400/10 hover:text-cyan-300;
+  }
+
+  .footer-link {
+    @apply inline-flex items-center gap-2 font-medium text-slate-400 transition hover:text-cyan-300;
+  }
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.hero-grid::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 12rem;
+  content: '';
+  background: linear-gradient(to bottom, transparent, #020617);
+  pointer-events: none;
+}
+
+.hero-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.hero-glow-one {
+  left: -10rem;
+  top: 10rem;
+  height: 30rem;
+  width: 30rem;
+  background: rgba(6, 182, 212, 0.12);
+}
+
+.hero-glow-two {
+  right: -8rem;
+  top: 16rem;
+  height: 25rem;
+  width: 25rem;
+  background: rgba(99, 102, 241, 0.11);
+}
+
+.text-gradient {
+  background: linear-gradient(110deg, #67e8f9 10%, #a5b4fc 75%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.contact-panel {
+  border: 1px solid rgba(103, 232, 249, 0.15);
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(99, 102, 241, 0.22),
+      transparent 24rem
+    ),
+    radial-gradient(
+      circle at 10% 100%,
+      rgba(6, 182, 212, 0.18),
+      transparent 25rem
+    ),
+    rgba(15, 23, 42, 0.82);
+}
+
+.contact-panel::after {
+  position: absolute;
+  right: -5rem;
+  bottom: -9rem;
+  height: 24rem;
+  width: 24rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  content: '';
+  box-shadow:
+    0 0 0 3rem rgba(255, 255, 255, 0.025),
+    0 0 0 6rem rgba(255, 255, 255, 0.015);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

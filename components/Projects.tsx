@@ -1,111 +1,154 @@
-'use client';
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
 
 const projects = [
   {
-    title: 'LiveBTCNow.com',
-    category: 'API Development',
+    title: 'LiveBTCNow',
+    eyebrow: 'Real-time fintech',
     image: '/livebtcnow.png',
     description:
-      'A real-time Bitcoin tracker with live price charts, market trends, and AI-powered financial insights.',
+      'A focused Bitcoin intelligence product combining live market data, interactive price charts, and AI-assisted financial insights.',
+    technologies: ['Next.js', 'Market APIs', 'AI'],
+    href: 'https://livebtcnow.com',
   },
   {
-    title: 'QuickMealPlan.com',
-    category: 'AI & Data Visualization',
+    title: 'QuickMealPlan',
+    eyebrow: 'AI consumer product',
     image: '/quickmealplan.png',
     description:
-      'An AI-powered meal planner that builds custom menus, grocery lists, and nutrition insights in seconds.',
+      'An AI-powered planning experience that turns preferences into practical menus, grocery lists, and nutrition guidance.',
+    technologies: ['Generative AI', 'Product UX', 'Automation'],
+    href: 'https://quickmealplan.com',
   },
   {
-    title: 'Dealer Portal - AI Dashboard',
-    category: 'AI & Data Visualization',
+    title: 'Dealer Portal',
+    eyebrow: 'Enterprise analytics',
     image: '/A_futuristic_AI-driven_dashboard_with_real-time_da.webp',
     description:
-      'An AI-driven dashboard with real-time data visualizations, financial graphs, and interactive analytics.',
+      'An AI-driven dealer workspace that makes complex financial and operational data clear, timely, and actionable.',
+    technologies: ['React', 'GraphQL', 'Data Visualization'],
   },
   {
-    title: 'WDG - LMS with Salesforce',
-    category: 'EdTech & CRM',
+    title: 'Salesforce Learning Platform',
+    eyebrow: 'EdTech and CRM',
     image: '/A_modern_learning_management_system_(LMS)_dashboar.webp',
     description:
-      'A custom LMS integrated with Salesforce, enabling course management, student tracking, and automation.',
+      'A custom learning platform connecting course delivery, student progress, and Salesforce-powered operations.',
+    technologies: ['Salesforce', 'LMS', 'Automation'],
   },
   {
-    title: 'Model B - AdTech AI',
-    category: 'Marketing & Automation',
+    title: 'AdTech Intelligence',
+    eyebrow: 'Marketing automation',
     image: '/A_high-tech_AdTech_platform_dashboard_with_AI-driv.webp',
     description:
-      'An AI-powered AdTech platform integrating marketing automation, Google Analytics, and campaign tracking.',
+      'A campaign intelligence platform connecting analytics, automation, and customer signals for better decisions.',
+    technologies: ['Google Analytics', 'AI', 'Cloud'],
   },
   {
-    title: 'ApparelMagic - ERP System',
-    category: 'E-Commerce & Cloud',
+    title: 'ApparelMagic ERP',
+    eyebrow: 'Commerce infrastructure',
     image: '/An_enterprise_ERP_software_dashboard_with_business.webp',
     description:
-      'An enterprise ERP solution integrating Amazon S3, Google Calendar, and automation tools for business management.',
-  },
-  {
-    title: 'John Maxwell Team - Leadership LMS',
-    category: 'Coaching & CRM',
-    image: '/A_leadership_training_and_coaching_dashboard_featu.webp',
-    description:
-      'A leadership training and coaching platform with CMS, Salesforce CRM, and email marketing automation.',
-  },
-  {
-    title: 'NewsMax - E-Commerce & Marketing',
-    category: 'E-Commerce & Customer Engagement',
-    image: '/A_dynamic_eCommerce_and_marketing_platform_with_in.webp',
-    description:
-      'An eCommerce and marketing analytics platform integrating customer insights and sales tracking.',
+      'Enterprise workflows and integrations that help fashion businesses manage products, orders, and operations.',
+    technologies: ['ERP', 'AWS', 'API Integrations'],
   },
 ];
 
 export default function Projects() {
-  const [activeProject, setActiveProject] = useState<string | null>(null);
+  const featured = projects.slice(0, 3);
+  const additional = projects.slice(3);
 
   return (
-    <div className="p-6">
-      <h2 className="text-4xl font-bold text-center m-8">
-        My Enginnering Experience
-      </h2>
+    <section id="work" className="section-shell scroll-mt-20">
+      <div className="section-heading">
+        <div>
+          <p className="eyebrow">Selected work</p>
+          <h2 className="section-title">Engineering with business impact.</h2>
+        </div>
+        <p className="section-intro">
+          A selection of products and platforms spanning AI, fintech, analytics,
+          learning, and enterprise operations.
+        </p>
+      </div>
 
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-        {projects.map((project) => (
-          <motion.div
+      <div className="mt-12 grid gap-6 lg:grid-cols-3">
+        {featured.map((project, index) => (
+          <article
             key={project.title}
-            whileHover={{ scale: 1.05 }}
-            className="relative p-6 bg-gray-200 dark:bg-gray-800 rounded-lg text-center overflow-hidden"
-            onMouseEnter={() => setActiveProject(project.title)}
-            onMouseLeave={() => setActiveProject(null)}
+            className={`project-card group ${index === 0 ? 'lg:col-span-2' : ''}`}
           >
-            {/* Project Image */}
-            <img
-              src={project.image}
-              alt={project.title}
-              className="rounded-lg w-full h-40 object-cover"
-            />
-
-            {/* Project Title */}
-            <h3 className="mt-3 text-xl font-semibold">{project.title}</h3>
-
-            {/* Hover Modal */}
-            <AnimatePresence>
-              {activeProject === project.title && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-90 text-white p-4 transition-all duration-300 rounded-lg"
-                >
-                  <p className="text-sm">{project.description}</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
+            <div
+              className={`relative overflow-hidden rounded-2xl bg-slate-900 ${
+                index === 0 ? 'aspect-[16/9]' : 'aspect-[4/5]'
+              }`}
+            >
+              <Image
+                src={project.image}
+                alt={`${project.title} product interface`}
+                fill
+                priority={index < 2}
+                sizes={
+                  index === 0
+                    ? '(min-width: 1024px) 66vw, 100vw'
+                    : '(min-width: 1024px) 33vw, 100vw'
+                }
+                className="object-cover transition duration-700 group-hover:scale-[1.03]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/10 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                <p className="eyebrow mb-2">{project.eyebrow}</p>
+                <div className="flex items-end justify-between gap-4">
+                  <h3 className="font-display text-2xl font-bold text-white sm:text-3xl">
+                    {project.title}
+                  </h3>
+                  {project.href && (
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Visit ${project.title}`}
+                      className="icon-button shrink-0 bg-white/10"
+                    >
+                      <ArrowUpRight size={18} aria-hidden="true" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="px-1 pb-2 pt-5">
+              <p className="leading-7 text-slate-400">{project.description}</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {project.technologies.map((technology) => (
+                  <span key={technology} className="tech-tag">
+                    {technology}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
         ))}
       </div>
-    </div>
+
+      <div className="mt-6 grid gap-4 md:grid-cols-3">
+        {additional.map((project) => (
+          <article key={project.title} className="glass-card p-6">
+            <p className="eyebrow">{project.eyebrow}</p>
+            <h3 className="font-display mt-3 text-xl font-bold text-white">
+              {project.title}
+            </h3>
+            <p className="mt-3 text-sm leading-6 text-slate-400">
+              {project.description}
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {project.technologies.map((technology) => (
+                <span key={technology} className="tech-tag">
+                  {technology}
+                </span>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }

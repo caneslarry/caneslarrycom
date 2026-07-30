@@ -51,8 +51,10 @@ export default function ChatbotModal() {
     <>
       {/* Floating Chat Icon */}
       <button
+        type="button"
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition  z-[60]"
+        aria-label="Open LarryAI chat"
+        className="fixed bottom-6 right-6 z-[60] rounded-full border border-cyan-300/30 bg-cyan-400 p-4 text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:-translate-y-1 hover:bg-cyan-300"
       >
         <MessageCircle className="w-6 h-6" />
       </button>
@@ -69,12 +71,15 @@ export default function ChatbotModal() {
             aria-hidden="true"
           />
           <div className="fixed inset-0 flex items-center justify-center p-4">
-            <Dialog.Panel className="w-full max-w-lg bg-white rounded-lg shadow-lg p-4">
-              <Dialog.Title className="text-lg font-bold">
+            <Dialog.Panel className="w-full max-w-lg rounded-2xl border border-white/10 bg-slate-950 p-5 text-slate-200 shadow-2xl">
+              <Dialog.Title className="font-display text-lg font-bold text-white">
                 Chat with LarryAI
               </Dialog.Title>
 
-              <div className="h-64 overflow-y-auto border-b pb-2">
+              <div
+                className="mt-4 h-64 overflow-y-auto border-b border-white/10 pb-2"
+                aria-live="polite"
+              >
                 {messages.map((msg, index) => (
                   <div
                     key={index}
@@ -86,24 +91,33 @@ export default function ChatbotModal() {
                 ))}
               </div>
 
-              <div className="flex mt-4">
+              <div className="mt-4 flex">
+                <label htmlFor="chat-message" className="sr-only">
+                  Message LarryAI
+                </label>
                 <input
+                  id="chat-message"
                   type="text"
-                  className="flex-1 border p-2 rounded-l-lg"
+                  className="min-w-0 flex-1 rounded-l-lg border border-white/10 bg-slate-900 p-2.5 text-white placeholder:text-slate-500"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') sendMessage();
+                  }}
                   placeholder="Type a message..."
                 />
                 <button
+                  type="button"
                   onClick={sendMessage}
-                  className="bg-blue-500 text-white p-2 rounded-r-lg"
+                  className="rounded-r-lg bg-cyan-400 px-4 font-bold text-slate-950 hover:bg-cyan-300"
                 >
                   Send
                 </button>
               </div>
 
               <button
-                className="mt-4 text-gray-500 hover:text-gray-700"
+                type="button"
+                className="mt-4 text-sm text-slate-400 hover:text-white"
                 onClick={() => setIsOpen(false)}
               >
                 Close

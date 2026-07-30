@@ -1,52 +1,36 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Moon, Sun } from 'phosphor-react';
+import { Moon, Sun } from 'lucide-react';
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') || 'light';
-    }
-    return 'light';
-  });
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+    const storedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches;
+    setIsDark(storedTheme ? storedTheme === 'dark' : prefersDark);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
 
   return (
     <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="relative flex items-center bg-gray-300 dark:bg-gray-700 rounded-full w-14 h-7 p-1 transition-all"
+      type="button"
+      onClick={() => setIsDark((current) => !current)}
+      className="icon-button"
+      aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
     >
-      {/* Sun Icon (Light Mode) */}
-      <Sun
-        size={16}
-        weight="bold"
-        className="absolute left-2 text-yellow-500 transition-opacity duration-300"
-        style={{ opacity: theme === 'dark' ? 1 : 0 }}
-      />
-
-      {/* Moon Icon (Dark Mode) */}
-      <Moon
-        size={16}
-        weight="bold"
-        className="absolute right-2 text-white transition-opacity duration-300"
-        style={{ opacity: theme === 'dark' ? 0 : 1 }}
-      />
-
-      {/* Toggle Button */}
-      <div
-        className={`absolute w-5 h-5 bg-white dark:bg-gray-900 rounded-full shadow-md transition-transform duration-300 ${
-          theme === 'dark' ? 'translate-x-7' : 'translate-x-0'
-        }`}
-      />
+      {isDark ? (
+        <Sun size={17} aria-hidden="true" />
+      ) : (
+        <Moon size={17} aria-hidden="true" />
+      )}
     </button>
   );
 }

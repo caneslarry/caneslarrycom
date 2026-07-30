@@ -1,8 +1,9 @@
 import '../styles/globals.css';
 
 export const metadata = {
-  title: 'Larry Hussey - Senior Software Engineer', // ✅ Sets page title globally
-  description: 'Larry Hussey, Senior Software Engineer in West Palm Beach, FL',
+  title: 'Larry Hussey | Senior Software Engineer & Team Lead',
+  description:
+    'Senior software engineer and team lead building scalable products, practical AI, cloud architecture, and high-performing engineering teams.',
 };
 
 export default function RootLayout({
@@ -11,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body>{children}</body>
     </html>
   );
