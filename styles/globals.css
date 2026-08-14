@@ -363,10 +363,10 @@
   height: 100%;
   width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
+  border-radius: 2.25rem;
   background:
     radial-gradient(
-      circle at 50% 50%,
+      circle at 58% 50%,
       rgba(34, 211, 238, 0.07),
       transparent 38%
     ),
@@ -392,6 +392,122 @@
 
 .systems-canvas::after {
   transform: rotate(90deg);
+}
+.neural-boundary {
+  stroke: rgba(148, 163, 184, 0.1);
+  stroke-width: 1;
+  stroke-dasharray: 3 10;
+  transform-origin: center;
+  animation: orbit-spin 55s linear infinite;
+}
+.neural-boundary-inner {
+  stroke: rgba(34, 211, 238, 0.09);
+  animation-direction: reverse;
+  animation-duration: 38s;
+}
+.neural-connections line {
+  stroke: rgba(148, 163, 184, 0.11);
+  stroke-width: 0.75;
+  transition: stroke 300ms ease;
+}
+.systems-canvas:hover .neural-connections line {
+  stroke: rgba(103, 232, 249, 0.18);
+}
+.neural-flow-lines path {
+  fill: none;
+  stroke: url(#neural-signal);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 8;
+  animation: signal-flow 8s linear infinite;
+}
+.neural-flow-lines path:nth-child(2) {
+  animation-delay: -2s;
+}
+.neural-flow-lines path:nth-child(3) {
+  animation-delay: -4s;
+}
+.neural-nodes circle {
+  fill: #07111b;
+  stroke: rgba(103, 232, 249, 0.55);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 5px rgba(34, 211, 238, 0.28));
+  animation: neural-pulse 3.2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.neural-attention circle {
+  stroke: rgba(125, 211, 252, 0.7);
+  animation-delay: -0.8s;
+}
+.neural-hidden circle {
+  stroke: rgba(165, 180, 252, 0.7);
+  animation-delay: -1.6s;
+}
+.neural-output circle {
+  fill: rgba(129, 140, 248, 0.16);
+  stroke: #a5b4fc;
+  animation-delay: -2.2s;
+}
+.transformer-core {
+  fill: rgba(5, 12, 21, 0.94);
+  stroke: rgba(165, 243, 252, 0.5);
+  stroke-width: 1;
+  filter: drop-shadow(0 0 22px rgba(34, 211, 238, 0.18));
+}
+.core-label {
+  fill: white;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.core-caption,
+.layer-labels text {
+  fill: #64748b;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 6px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+.layer-labels text {
+  fill: #475569;
+  font-size: 7px;
+}
+.canvas-token,
+.canvas-response {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.45rem;
+  background: rgba(2, 6, 23, 0.78);
+  padding: 0.35rem 0.5rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  backdrop-filter: blur(8px);
+}
+.canvas-token-one {
+  left: 3%;
+  top: 39%;
+}
+.canvas-token-two {
+  left: 5%;
+  top: 56%;
+}
+.canvas-response {
+  right: 2.5%;
+  top: 48%;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #c7d2fe;
+}
+.canvas-response i {
+  height: 0.3rem;
+  width: 0.3rem;
+  border-radius: 50%;
+  background: #818cf8;
+  box-shadow: 0 0 9px #818cf8;
 }
 .canvas-orbit {
   stroke: rgba(148, 163, 184, 0.14);
@@ -433,20 +549,20 @@
   color: #64748b;
 }
 .canvas-label-one {
-  left: 12%;
-  top: 24%;
+  left: 7%;
+  top: 8%;
 }
 .canvas-label-two {
-  bottom: 21%;
   right: 7%;
+  top: 8%;
   color: rgba(103, 232, 249, 0.7);
 }
 .canvas-status {
   position: absolute;
   left: 50%;
-  top: 50%;
+  bottom: 5%;
   display: flex;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   align-items: center;
   gap: 0.55rem;
   white-space: nowrap;
@@ -527,6 +643,12 @@
   50% {
     opacity: 0.65;
     transform: scale(0.86);
+  }
+}
+@keyframes neural-pulse {
+  50% {
+    opacity: 0.55;
+    transform: scale(0.88);
   }
 }
 

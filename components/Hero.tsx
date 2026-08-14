@@ -12,6 +12,11 @@ const capabilities = [
 ];
 
 function SystemsCanvas() {
+  const inputNodes = [180, 260, 340, 420];
+  const attentionNodes = [145, 215, 285, 355, 425, 495];
+  const hiddenNodes = [175, 245, 320, 395, 465];
+  const outputNodes = [235, 320, 405];
+
   return (
     <div className="systems-canvas" aria-hidden="true">
       <svg viewBox="0 0 640 640" className="h-full w-full" fill="none">
@@ -23,61 +28,150 @@ function SystemsCanvas() {
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
+          <linearGradient
+            id="neural-signal"
+            x1="95"
+            y1="320"
+            x2="560"
+            y2="320"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#22d3ee" stopOpacity=".15" />
+            <stop offset=".48" stopColor="#67e8f9" stopOpacity=".8" />
+            <stop offset="1" stopColor="#818cf8" stopOpacity=".25" />
+          </linearGradient>
         </defs>
+        <circle cx="320" cy="320" r="272" className="neural-boundary" />
         <circle
           cx="320"
           cy="320"
-          r="250"
-          className="canvas-orbit canvas-orbit-one"
+          r="232"
+          className="neural-boundary neural-boundary-inner"
         />
-        <circle
-          cx="320"
-          cy="320"
-          r="174"
-          className="canvas-orbit canvas-orbit-two"
+
+        <g className="neural-connections">
+          {inputNodes.flatMap((from, row) =>
+            attentionNodes.map((to, column) => (
+              <line
+                key={`input-${row}-${column}`}
+                x1="116"
+                y1={from}
+                x2="230"
+                y2={to}
+              />
+            ))
+          )}
+          {attentionNodes.flatMap((from, row) =>
+            hiddenNodes.map((to, column) => (
+              <line
+                key={`attention-${row}-${column}`}
+                x1="230"
+                y1={from}
+                x2="370"
+                y2={to}
+              />
+            ))
+          )}
+          {hiddenNodes.flatMap((from, row) =>
+            outputNodes.map((to, column) => (
+              <line
+                key={`hidden-${row}-${column}`}
+                x1="370"
+                y1={from}
+                x2="512"
+                y2={to}
+              />
+            ))
+          )}
+        </g>
+
+        <g className="neural-flow-lines">
+          <path id="flow-a" d="M116 180L230 285L370 245L512 320L565 320" />
+          <path id="flow-b" d="M116 340L230 425L370 395L512 405L565 405" />
+          <path id="flow-c" d="M116 420L230 215L370 320L512 235L565 235" />
+        </g>
+
+        <g className="neural-nodes neural-input">
+          {inputNodes.map((y, index) => (
+            <circle key={y} cx="116" cy={y} r={index === 2 ? 7 : 5} />
+          ))}
+        </g>
+        <g className="neural-nodes neural-attention">
+          {attentionNodes.map((y, index) => (
+            <circle
+              key={y}
+              cx="230"
+              cy={y}
+              r={index === 2 || index === 3 ? 7 : 5}
+            />
+          ))}
+        </g>
+        <g className="neural-nodes neural-hidden">
+          {hiddenNodes.map((y, index) => (
+            <circle key={y} cx="370" cy={y} r={index === 2 ? 10 : 5} />
+          ))}
+        </g>
+        <g className="neural-nodes neural-output">
+          {outputNodes.map((y) => (
+            <circle key={y} cx="512" cy={y} r="6" />
+          ))}
+        </g>
+
+        <rect
+          x="330"
+          y="289"
+          width="80"
+          height="62"
+          rx="14"
+          className="transformer-core"
         />
-        <path
-          d="M72 397C165 397 151 222 259 222S357 437 567 254"
-          className="canvas-path"
-        />
-        <path
-          d="M112 142H235L320 320H470L552 508"
-          className="canvas-path canvas-path-muted"
-        />
-        <circle
-          cx="259"
-          cy="222"
-          r="5"
-          className="canvas-node"
-          filter="url(#glow)"
-        />
-        <circle
-          cx="320"
-          cy="320"
-          r="8"
-          className="canvas-node canvas-node-core"
-          filter="url(#glow)"
-        />
-        <circle
-          cx="470"
-          cy="320"
-          r="5"
-          className="canvas-node"
-          filter="url(#glow)"
-        />
-        <circle cx="552" cy="508" r="4" className="canvas-node" />
+        <text x="370" y="316" textAnchor="middle" className="core-label">
+          GPT
+        </text>
+        <text x="370" y="334" textAnchor="middle" className="core-caption">
+          TRANSFORMER
+        </text>
+
+        <g className="layer-labels">
+          <text x="116" y="130" textAnchor="middle">
+            TOKENS
+          </text>
+          <text x="230" y="112" textAnchor="middle">
+            ATTENTION
+          </text>
+          <text x="370" y="132" textAnchor="middle">
+            REASONING
+          </text>
+          <text x="512" y="190" textAnchor="middle">
+            OUTPUT
+          </text>
+        </g>
+
         <circle r="4" fill="#fff" filter="url(#glow)">
           <animateMotion
-            dur="5s"
+            dur="3.8s"
             repeatCount="indefinite"
-            path="M72 397C165 397 151 222 259 222S357 437 567 254"
+            path="M116 180L230 285L370 245L512 320L565 320"
+          />
+        </circle>
+        <circle r="3" fill="#67e8f9" filter="url(#glow)">
+          <animateMotion
+            dur="4.6s"
+            begin="-2s"
+            repeatCount="indefinite"
+            path="M116 420L230 215L370 320L512 235L565 235"
           />
         </circle>
       </svg>
-      <span className="canvas-label canvas-label-one">SYSTEM / 01</span>
-      <span className="canvas-label canvas-label-two">SIGNAL ACTIVE</span>
+      <span className="canvas-token canvas-token-one">complexity</span>
+      <span className="canvas-token canvas-token-two">context</span>
+      <span className="canvas-response">
+        <i /> clarity generated
+      </span>
+      <span className="canvas-label canvas-label-one">NEURAL SYSTEM / 5.6</span>
+      <span className="canvas-label canvas-label-two">INFERENCE ACTIVE</span>
       <span className="canvas-status">
-        <i /> BUILDING FOR CLARITY
+        <i /> PROCESSING SIGNAL
       </span>
     </div>
   );
