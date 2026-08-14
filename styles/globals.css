@@ -408,7 +408,9 @@
 .neural-connections line {
   stroke: rgba(148, 163, 184, 0.11);
   stroke-width: 0.75;
+  stroke-dasharray: 2 4;
   transition: stroke 300ms ease;
+  animation: signal-flow 12s linear infinite;
 }
 .systems-canvas:hover .neural-connections line {
   stroke: rgba(103, 232, 249, 0.18);

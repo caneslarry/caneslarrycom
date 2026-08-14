@@ -11,11 +11,131 @@ const capabilities = [
   { index: '03', label: 'Enterprise + applied AI' },
 ];
 
+type NeuralNode = {
+  id: string;
+  x: number;
+  y: number;
+  driftX: number;
+  driftY: number;
+  duration: number;
+  delay: number;
+};
+
+const makeNodes = (
+  prefix: string,
+  x: number,
+  positions: number[],
+  direction = 1
+): NeuralNode[] =>
+  positions.map((y, index) => ({
+    id: `${prefix}-${index}`,
+    x,
+    y,
+    driftX: (7 + (index % 3) * 3) * (index % 2 ? -direction : direction),
+    driftY: (9 + (index % 2) * 5) * (index % 3 === 0 ? -1 : 1),
+    duration: 6.5 + (index % 3) * 1.4,
+    delay: -(index * 1.15),
+  }));
+
+const motionValues = (base: number, drift: number) =>
+  `${base};${base + drift};${base - drift * 0.55};${base}`;
+
+function AttributeMotion({
+  node,
+  xName,
+  yName,
+}: {
+  node: NeuralNode;
+  xName: string;
+  yName: string;
+}) {
+  const timing = {
+    dur: `${node.duration}s`,
+    begin: `${node.delay}s`,
+    repeatCount: 'indefinite',
+    calcMode: 'spline',
+    keySplines: '.45 0 .55 1;.45 0 .55 1;.45 0 .55 1',
+  };
+  return (
+    <>
+      <animate
+        attributeName={xName}
+        values={motionValues(node.x, node.driftX)}
+        {...timing}
+      />
+      <animate
+        attributeName={yName}
+        values={motionValues(node.y, node.driftY)}
+        {...timing}
+      />
+    </>
+  );
+}
+
+function Connections({ from, to }: { from: NeuralNode[]; to: NeuralNode[] }) {
+  return (
+    <>
+      {from.flatMap((start) =>
+        to.map((end) => (
+          <line
+            key={`${start.id}-${end.id}`}
+            x1={start.x}
+            y1={start.y}
+            x2={end.x}
+            y2={end.y}
+          >
+            <AttributeMotion node={start} xName="x1" yName="y1" />
+            <AttributeMotion node={end} xName="x2" yName="y2" />
+          </line>
+        ))
+      )}
+    </>
+  );
+}
+
+function NeuralLayer({
+  nodes,
+  className,
+  large = [],
+}: {
+  nodes: NeuralNode[];
+  className: string;
+  large?: number[];
+}) {
+  return (
+    <g className={`neural-nodes ${className}`}>
+      {nodes.map((node, index) => (
+        <circle
+          key={node.id}
+          cx={node.x}
+          cy={node.y}
+          r={
+            large.includes(index)
+              ? className === 'neural-hidden'
+                ? 10
+                : 7
+              : className === 'neural-output'
+                ? 6
+                : 5
+          }
+        >
+          <AttributeMotion node={node} xName="cx" yName="cy" />
+        </circle>
+      ))}
+    </g>
+  );
+}
+
 function SystemsCanvas() {
-  const inputNodes = [180, 260, 340, 420];
-  const attentionNodes = [145, 215, 285, 355, 425, 495];
-  const hiddenNodes = [175, 245, 320, 395, 465];
-  const outputNodes = [235, 320, 405];
+  const inputNodes = makeNodes('input', 116, [180, 260, 340, 420]);
+  const attentionNodes = makeNodes(
+    'attention',
+    230,
+    [145, 215, 285, 355, 425, 495],
+    -1
+  );
+  const hiddenNodes = makeNodes('hidden', 370, [175, 245, 320, 395, 465]);
+  const outputNodes = makeNodes('output', 512, [235, 320, 405], -1);
 
   return (
     <div className="systems-canvas" aria-hidden="true">
@@ -50,72 +170,23 @@ function SystemsCanvas() {
         />
 
         <g className="neural-connections">
-          {inputNodes.flatMap((from, row) =>
-            attentionNodes.map((to, column) => (
-              <line
-                key={`input-${row}-${column}`}
-                x1="116"
-                y1={from}
-                x2="230"
-                y2={to}
-              />
-            ))
-          )}
-          {attentionNodes.flatMap((from, row) =>
-            hiddenNodes.map((to, column) => (
-              <line
-                key={`attention-${row}-${column}`}
-                x1="230"
-                y1={from}
-                x2="370"
-                y2={to}
-              />
-            ))
-          )}
-          {hiddenNodes.flatMap((from, row) =>
-            outputNodes.map((to, column) => (
-              <line
-                key={`hidden-${row}-${column}`}
-                x1="370"
-                y1={from}
-                x2="512"
-                y2={to}
-              />
-            ))
-          )}
+          <Connections from={inputNodes} to={attentionNodes} />
+          <Connections from={attentionNodes} to={hiddenNodes} />
+          <Connections from={hiddenNodes} to={outputNodes} />
         </g>
 
-        <g className="neural-flow-lines">
-          <path id="flow-a" d="M116 180L230 285L370 245L512 320L565 320" />
-          <path id="flow-b" d="M116 340L230 425L370 395L512 405L565 405" />
-          <path id="flow-c" d="M116 420L230 215L370 320L512 235L565 235" />
-        </g>
-
-        <g className="neural-nodes neural-input">
-          {inputNodes.map((y, index) => (
-            <circle key={y} cx="116" cy={y} r={index === 2 ? 7 : 5} />
-          ))}
-        </g>
-        <g className="neural-nodes neural-attention">
-          {attentionNodes.map((y, index) => (
-            <circle
-              key={y}
-              cx="230"
-              cy={y}
-              r={index === 2 || index === 3 ? 7 : 5}
-            />
-          ))}
-        </g>
-        <g className="neural-nodes neural-hidden">
-          {hiddenNodes.map((y, index) => (
-            <circle key={y} cx="370" cy={y} r={index === 2 ? 10 : 5} />
-          ))}
-        </g>
-        <g className="neural-nodes neural-output">
-          {outputNodes.map((y) => (
-            <circle key={y} cx="512" cy={y} r="6" />
-          ))}
-        </g>
+        <NeuralLayer nodes={inputNodes} className="neural-input" large={[2]} />
+        <NeuralLayer
+          nodes={attentionNodes}
+          className="neural-attention"
+          large={[2, 3]}
+        />
+        <NeuralLayer
+          nodes={hiddenNodes}
+          className="neural-hidden"
+          large={[2]}
+        />
+        <NeuralLayer nodes={outputNodes} className="neural-output" />
 
         <rect
           x="330"
@@ -146,22 +217,6 @@ function SystemsCanvas() {
             OUTPUT
           </text>
         </g>
-
-        <circle r="4" fill="#fff" filter="url(#glow)">
-          <animateMotion
-            dur="3.8s"
-            repeatCount="indefinite"
-            path="M116 180L230 285L370 245L512 320L565 320"
-          />
-        </circle>
-        <circle r="3" fill="#67e8f9" filter="url(#glow)">
-          <animateMotion
-            dur="4.6s"
-            begin="-2s"
-            repeatCount="indefinite"
-            path="M116 420L230 215L370 320L512 235L565 235"
-          />
-        </circle>
       </svg>
       <span className="canvas-token canvas-token-one">complexity</span>
       <span className="canvas-token canvas-token-two">context</span>
