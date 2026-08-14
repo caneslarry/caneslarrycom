@@ -6,14 +6,19 @@ describe('Home Page', () => {
     render(<HomePage />);
 
     expect(
-      screen.getByRole('heading', { name: /engineering with business impact/i })
+      screen.getByRole('heading', { name: /experience you can measure/i })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: /broad range. clear focus/i })
+      screen.getByRole('heading', { name: /the thinking behind the build/i })
     ).toBeInTheDocument();
     expect(
       screen.getByRole('heading', {
-        name: /have a difficult product or engineering problem/i,
+        name: /from first question to lasting system/i,
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', {
+        name: /what should we solve together/i,
       })
     ).toBeInTheDocument();
   });

@@ -1,88 +1,145 @@
-import { Blocks, Cloud, Database, Users } from 'lucide-react';
+'use client';
 
-const expertise = [
+import { motion, useScroll, useSpring } from 'framer-motion';
+import { Blocks, Cloud, Compass, Database, Rocket, Users } from 'lucide-react';
+import { useRef } from 'react';
+
+const journey = [
   {
-    title: 'Product engineering',
+    title: 'Product strategy',
+    short: 'Frame',
     description:
-      'End-to-end development for dependable, maintainable customer experiences.',
-    icon: Blocks,
-    skills: ['TypeScript', 'React', 'Next.js', 'Node.js', 'PHP', 'Python'],
+      'Find the real constraint, define the useful outcome, and translate stakeholder needs into an executable product direction.',
+    icon: Compass,
+    skills: ['Discovery', 'Requirements', 'Product UX', 'Technical direction'],
   },
   {
-    title: 'Cloud and delivery',
+    title: 'System design',
+    short: 'Design',
     description:
-      'Infrastructure and delivery systems designed for speed without sacrificing stability.',
-    icon: Cloud,
-    skills: ['AWS', 'Google Cloud', 'Azure', 'Docker', 'CI/CD', 'CircleCI'],
-  },
-  {
-    title: 'Data and integrations',
-    description:
-      'APIs, event systems, and data layers that keep complex businesses connected.',
+      'Modernize complex systems with clear boundaries, dependable data, and room to evolve.',
     icon: Database,
-    skills: [
-      'GraphQL',
-      'Postgres',
-      'MySQL',
-      'RabbitMQ',
-      'Salesforce',
-      'REST APIs',
-    ],
+    skills: ['Architecture', 'GraphQL', 'Postgres', 'APIs', 'Cloud migration'],
   },
   {
-    title: 'Technical leadership',
+    title: 'Engineering',
+    short: 'Build',
     description:
-      'Practical leadership that aligns architecture, delivery, and team growth.',
+      'Create maintainable enterprise and AI-assisted products across the stack with quality built into the workflow.',
+    icon: Blocks,
+    skills: ['TypeScript', 'React', 'Next.js', 'Node.js', 'Python', 'PHP'],
+  },
+  {
+    title: 'Delivery',
+    short: 'Ship',
+    description:
+      'Move deliberately from code to production through observable, repeatable delivery systems.',
+    icon: Rocket,
+    skills: ['AWS', 'Google Cloud', 'Azure', 'Docker', 'CI/CD'],
+  },
+  {
+    title: 'Team leadership',
+    short: 'Scale',
+    description:
+      'Align teams, executives, and clients around the context, standards, and trust required to deliver well.',
     icon: Users,
-    skills: [
-      'System Design',
-      'Agile',
-      'Mentoring',
-      'Architecture',
-      'Security',
-      'Scrum',
-    ],
+    skills: ['Mentoring', 'Agile', 'Security', 'Scrum'],
   },
 ];
 
 export default function Skills() {
-  return (
-    <section id="expertise" className="section-shell scroll-mt-20">
-      <div className="section-heading">
-        <div>
-          <p className="eyebrow">Core expertise</p>
-          <h2 className="section-title">Broad range. Clear focus.</h2>
-        </div>
-        <p className="section-intro">
-          I work across the stack, but the objective stays consistent: turn
-          difficult technical problems into durable business outcomes.
-        </p>
-      </div>
+  const ref = useRef<globalThis.HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start 70%', 'end 65%'],
+  });
+  const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24 });
 
-      <div className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 md:grid-cols-2">
-        {expertise.map(({ title, description, icon: Icon, skills }) => (
-          <article key={title} className="bg-slate-950/95 p-7 sm:p-9">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-400/20 bg-cyan-400/10 text-cyan-300">
-              <Icon size={21} aria-hidden="true" />
-            </div>
-            <h3 className="font-display mt-6 text-2xl font-bold text-white">
-              {title}
-            </h3>
-            <p className="mt-3 max-w-md leading-7 text-slate-400">
-              {description}
-            </p>
-            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="text-sm font-medium text-slate-300"
+  return (
+    <section
+      id="expertise"
+      className="relative scroll-mt-20 border-y border-white/[0.06] bg-white/[0.012]"
+    >
+      <div className="section-shell">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">How I work</p>
+            <h2 className="section-title">
+              From first question to lasting system.
+            </h2>
+          </div>
+          <p className="section-intro">
+            The value is not one framework or cloud. It is connecting product
+            judgment, architecture, execution, and leadership into one
+            continuous practice.
+          </p>
+        </div>
+
+        <div ref={ref} className="relative mt-16 lg:mt-24">
+          <div className="absolute bottom-10 left-[1.15rem] top-10 w-px bg-white/10 lg:bottom-auto lg:left-0 lg:right-0 lg:top-[2.2rem] lg:h-px lg:w-auto">
+            <motion.div
+              style={{ scaleY: progress }}
+              className="h-full origin-top bg-gradient-to-b from-cyan-400 to-indigo-400 lg:hidden"
+            />
+            <motion.div
+              style={{ scaleX: progress }}
+              className="hidden h-full origin-left bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400 lg:block"
+            />
+          </div>
+          <div className="relative grid gap-7 lg:grid-cols-5 lg:gap-4">
+            {journey.map(
+              ({ title, short, description, icon: Icon, skills }, index) => (
+                <motion.article
+                  key={title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-12%' }}
+                  transition={{ duration: 0.5, delay: index * 0.07 }}
+                  className="group grid grid-cols-[2.4rem_1fr] gap-5 lg:block"
                 >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </article>
-        ))}
+                  <div className="relative flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-[#05080d] text-slate-500 transition duration-300 group-hover:border-cyan-400/50 group-hover:text-cyan-300 lg:mb-8">
+                    <Icon size={16} aria-hidden="true" />
+                    <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-slate-700 transition group-hover:bg-cyan-300 group-hover:shadow-[0_0_12px_#22d3ee]" />
+                  </div>
+                  <div className="pb-6 lg:pr-5">
+                    <span className="font-mono text-[0.6rem] uppercase tracking-[0.16em] text-cyan-500">
+                      0{index + 1} / {short}
+                    </span>
+                    <h3 className="font-display mt-3 text-xl font-bold text-white">
+                      {title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-slate-400">
+                      {description}
+                    </p>
+                    <div className="mt-5 flex flex-wrap gap-x-3 gap-y-2">
+                      {skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="text-[0.68rem] font-semibold text-slate-500 transition group-hover:text-slate-300"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.article>
+              )
+            )}
+          </div>
+        </div>
+
+        <div className="mt-14 flex flex-col gap-4 rounded-2xl border border-cyan-400/15 bg-cyan-400/[0.035] p-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-3">
+            <Cloud size={19} className="text-cyan-300" />
+            <p className="font-display font-bold text-white">
+              Broad technology range. One accountable owner.
+            </p>
+          </div>
+          <p className="max-w-xl text-sm leading-6 text-slate-400">
+            I can move from a product conversation to an architecture review to
+            the implementation details without losing the thread.
+          </p>
+        </div>
       </div>
     </section>
   );
