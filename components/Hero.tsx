@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowDownRight, ArrowUpRight, Asterisk, MapPin } from 'lucide-react';
-import { MouseEvent } from 'react';
+import { CSSProperties, MouseEvent } from 'react';
 
 const principles = ['I design systems.', 'I lead teams.', 'I ship products.'];
 const capabilities = [
@@ -72,17 +72,35 @@ function AttributeMotion({
   );
 }
 
-function Connections({ from, to }: { from: NeuralNode[]; to: NeuralNode[] }) {
+function Connections({
+  from,
+  to,
+  stage,
+}: {
+  from: NeuralNode[];
+  to: NeuralNode[];
+  stage: number;
+}) {
   return (
     <>
-      {from.flatMap((start) =>
-        to.map((end) => (
+      {from.flatMap((start, startIndex) =>
+        to.map((end, endIndex) => (
           <line
             key={`${start.id}-${end.id}`}
+            className={
+              (startIndex * 3 + endIndex + stage) % 4 === 0
+                ? 'neural-connection-firing'
+                : ''
+            }
             x1={start.x}
             y1={start.y}
             x2={end.x}
             y2={end.y}
+            style={
+              {
+                '--fire-delay': `${stage * 0.85 + endIndex * 0.12}s`,
+              } as CSSProperties
+            }
           >
             <AttributeMotion node={start} xName="x1" yName="y1" />
             <AttributeMotion node={end} xName="x2" yName="y2" />
@@ -97,10 +115,12 @@ function NeuralLayer({
   nodes,
   className,
   large = [],
+  stage,
 }: {
   nodes: NeuralNode[];
   className: string;
   large?: number[];
+  stage: number;
 }) {
   return (
     <g className={`neural-nodes ${className}`}>
@@ -117,6 +137,11 @@ function NeuralLayer({
               : className === 'neural-output'
                 ? 6
                 : 5
+          }
+          style={
+            {
+              '--node-delay': `${stage * 0.85 + index * 0.12 + 0.3}s`,
+            } as CSSProperties
           }
         >
           <AttributeMotion node={node} xName="cx" yName="cy" />
@@ -170,24 +195,39 @@ function SystemsCanvas() {
         />
 
         <g className="neural-connections">
-          <Connections from={inputNodes} to={attentionNodes} />
-          <Connections from={attentionNodes} to={hiddenNodes} />
-          <Connections from={hiddenNodes} to={outputNodes} />
+          <Connections from={inputNodes} to={attentionNodes} stage={0} />
+          <Connections from={attentionNodes} to={hiddenNodes} stage={1} />
+          <Connections from={hiddenNodes} to={outputNodes} stage={2} />
         </g>
 
-        <NeuralLayer nodes={inputNodes} className="neural-input" large={[2]} />
+        <NeuralLayer
+          nodes={inputNodes}
+          className="neural-input"
+          large={[2]}
+          stage={0}
+        />
         <NeuralLayer
           nodes={attentionNodes}
           className="neural-attention"
           large={[2, 3]}
+          stage={1}
         />
         <NeuralLayer
           nodes={hiddenNodes}
           className="neural-hidden"
           large={[2]}
+          stage={2}
         />
-        <NeuralLayer nodes={outputNodes} className="neural-output" />
+        <NeuralLayer nodes={outputNodes} className="neural-output" stage={3} />
 
+        <rect
+          x="322"
+          y="281"
+          width="96"
+          height="78"
+          rx="20"
+          className="transformer-activation"
+        />
         <rect
           x="330"
           y="289"

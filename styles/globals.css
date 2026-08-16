@@ -412,6 +412,11 @@
   transition: stroke 300ms ease;
   animation: signal-flow 12s linear infinite;
 }
+.neural-connections .neural-connection-firing {
+  animation:
+    signal-flow 12s linear infinite,
+    neural-fire 4.2s ease-in-out var(--fire-delay, 0s) infinite;
+}
 .systems-canvas:hover .neural-connections line {
   stroke: rgba(103, 232, 249, 0.18);
 }
@@ -433,22 +438,29 @@
   stroke: rgba(103, 232, 249, 0.55);
   stroke-width: 1.5;
   filter: drop-shadow(0 0 5px rgba(34, 211, 238, 0.28));
-  animation: neural-pulse 3.2s ease-in-out infinite;
+  animation:
+    neural-pulse 3.2s ease-in-out infinite,
+    neuron-fire 4.2s ease-in-out var(--node-delay, 0s) infinite;
   transform-box: fill-box;
   transform-origin: center;
 }
+.transformer-activation {
+  fill: none;
+  stroke: rgba(103, 232, 249, 0.4);
+  stroke-width: 1;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: core-thinking 4.2s ease-out 2s infinite;
+}
 .neural-attention circle {
   stroke: rgba(125, 211, 252, 0.7);
-  animation-delay: -0.8s;
 }
 .neural-hidden circle {
   stroke: rgba(165, 180, 252, 0.7);
-  animation-delay: -1.6s;
 }
 .neural-output circle {
   fill: rgba(129, 140, 248, 0.16);
   stroke: #a5b4fc;
-  animation-delay: -2.2s;
 }
 .transformer-core {
   fill: rgba(5, 12, 21, 0.94);
@@ -651,6 +663,51 @@
   50% {
     opacity: 0.55;
     transform: scale(0.88);
+  }
+}
+@keyframes neural-fire {
+  0%,
+  14%,
+  100% {
+    stroke: rgba(148, 163, 184, 0.11);
+    stroke-width: 0.75;
+    filter: none;
+  }
+  4%,
+  8% {
+    stroke: #a5f3fc;
+    stroke-width: 2.2;
+    filter: drop-shadow(0 0 5px #22d3ee);
+  }
+}
+@keyframes neuron-fire {
+  0%,
+  18%,
+  100% {
+    fill: #07111b;
+    filter: drop-shadow(0 0 5px rgba(34, 211, 238, 0.28));
+  }
+  7%,
+  12% {
+    fill: #ecfeff;
+    stroke: white;
+    filter: drop-shadow(0 0 11px #22d3ee);
+  }
+}
+@keyframes core-thinking {
+  0%,
+  38%,
+  100% {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  48% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  68% {
+    opacity: 0;
+    transform: scale(1.3);
   }
 }
 
