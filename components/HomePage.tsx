@@ -1,5 +1,6 @@
 import { MapPin } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import AIFrontier from './AIFrontier';
 import Contact from './Contact';
 import Experience from './Experience';
 import Impact from './Impact';
@@ -10,6 +11,7 @@ export default function HomePage() {
   return (
     <main className="overflow-hidden">
       <Impact />
+      <AIFrontier />
       <Projects />
       <Skills />
       <Experience />

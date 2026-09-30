@@ -7,6 +7,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import Hero from './Hero';
 
 const navigation = [
+  { label: 'AI', href: '#ai-frontier', id: 'ai-frontier' },
   { label: 'Work', href: '#work', id: 'work' },
   { label: 'Expertise', href: '#expertise', id: 'expertise' },
   { label: 'Experience', href: '#experience', id: 'experience' },

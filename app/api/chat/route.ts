@@ -4,7 +4,9 @@ const context = `Larry Hussey is a senior software engineer and technical team l
 
 Recent roles include Senior Software Engineer / Team Lead at Agora Data, Senior Full Stack Developer at WDG, Senior Software Engineer / Team Lead at Model B, and Senior Software Engineer at ApparelMagic. His stack includes TypeScript, React, Next.js, Node.js, Python, PHP, GraphQL, Postgres, AWS, Google Cloud, Azure, Docker, CI/CD, Salesforce, and API integrations.
 
-Featured work includes LiveBTCNow, a real-time Bitcoin intelligence product; QuickMealPlan, an AI-powered meal-planning product; and an enterprise Dealer Portal built around React, GraphQL, data visualization, and AI-assisted decision support. Larry is strongest where a team needs someone who can connect product judgment, architecture, hands-on delivery, and team leadership.`;
+Larry's featured career work includes the John Maxwell Digital Platform, the Agora Data dealer platform, and the Model B marketing platform. LiveBTCNow and QuickMealPlan are independent side projects. Larry is strongest where a team needs someone who can connect product judgment, architecture, hands-on delivery, and team leadership.
+
+Larry stays hands-on with frontier AI engineering across OpenAI GPT and Codex, Anthropic Claude and Claude Code, Google Gemini, GitHub Copilot agent mode, MCP servers and clients, agentic AI programming, multi-agent orchestration, function calling, structured outputs, RAG, vector search, evaluations, guardrails, and observability. He helps teams adopt these capabilities with the architecture, security boundaries, human review, and delivery discipline expected from a seasoned engineering leader.`;
 
 export async function POST(req: Request) {
   const apiKey = process.env.OPENAI_API_KEY;

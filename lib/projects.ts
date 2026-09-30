@@ -52,21 +52,75 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: 'agora-data-platform',
+    title: 'Agora Data Dealer Platform',
+    eyebrow: 'Fintech · Enterprise analytics',
+    image: '/A_futuristic_AI-driven_dashboard_with_real-time_da.webp',
+    description:
+      'An AI-assisted dealer experience that turns complex financial and operational data into clear workflows, timely signals, and actionable decisions.',
+    technologies: ['React', 'Next.js', 'GraphQL', 'AI'],
+    role: 'Senior software engineer · Team lead',
+    challenge:
+      'Dealers needed to act on financial and operational information distributed across complex systems, while the engineering team needed a front-end foundation that could support a growing product surface.',
+    decision:
+      'Organize the experience around dealer decisions instead of source systems, establish GraphQL as the product-facing data contract, and build reusable Next.js patterns for dashboards and AI-assisted workflows.',
+    outcome:
+      'A more coherent dealer workspace and a stronger delivery foundation for expanding data-heavy product capabilities across the team.',
+    signals: [
+      { value: 'Lead', label: 'Engineering role' },
+      { value: 'GraphQL', label: 'Product data layer' },
+      { value: 'AI', label: 'Decision support' },
+    ],
+    architecture: [
+      { label: 'Data sources', detail: 'Financial and operational systems' },
+      { label: 'GraphQL', detail: 'Unified product-facing contracts' },
+      { label: 'Next.js', detail: 'Reusable dealer workflows and dashboards' },
+      { label: 'Decision layer', detail: 'AI-assisted context and action' },
+    ],
+  },
+  {
+    slug: 'model-b-platform',
+    title: 'Model B Marketing Platform',
+    eyebrow: 'Marketing technology · Product leadership',
+    image: '/A_high-tech_AdTech_platform_dashboard_with_AI-driv.webp',
+    description:
+      'A connected marketing technology platform bringing analytics, customer engagement, automation, and cloud services into a clearer product and delivery system.',
+    technologies: ['React', 'Analytics', 'AWS', 'Google Cloud'],
+    role: 'Senior software engineer · Team lead',
+    challenge:
+      'Campaign performance and customer signals were spread across analytics, engagement, and cloud platforms, creating both product complexity and delivery friction for the team.',
+    decision:
+      'Treat integrations as a shared product capability, align the engineering team around reusable workflows, and connect customer signals through a consistent automation and analytics layer.',
+    outcome:
+      'A more connected marketing platform and an engineering practice better equipped to deliver cross-system product work with clarity.',
+    signals: [
+      { value: 'Lead', label: 'Engineering role' },
+      { value: 'Multi-cloud', label: 'Delivery environment' },
+      { value: '360°', label: 'Customer signals' },
+    ],
+    architecture: [
+      { label: 'Signals', detail: 'Campaign and customer activity' },
+      { label: 'Integrations', detail: 'Analytics and engagement platforms' },
+      { label: 'Automation', detail: 'Shared marketing workflows' },
+      { label: 'Product view', detail: 'Connected performance context' },
+    ],
+  },
+  {
     slug: 'live-btc-now',
     title: 'LiveBTCNow',
-    eyebrow: 'Real-time fintech',
+    eyebrow: 'Side project · Real-time fintech',
     image: '/livebtcnow.png',
     description:
       'A focused Bitcoin intelligence product combining live market data, interactive price charts, and AI-assisted financial insights.',
     technologies: ['Next.js', 'Market APIs', 'AI'],
     href: 'http://ai-tools-dusky.vercel.app/btc-price',
-    role: 'Product strategy · Architecture · Full-stack engineering',
+    role: 'Independent product · Full-stack engineering',
     challenge:
       'Market data is abundant but fragmented. The product needed to turn constantly changing signals into an interface that feels immediate, trustworthy, and easy to scan.',
     decision:
-      'Separate the live market-data layer from AI interpretation, then design the interface around progressive disclosure: price first, context second, deeper analysis on demand.',
+      'Separate the live market-data layer from AI interpretation, then design around progressive disclosure.',
     outcome:
-      'A fast, focused decision-support experience that makes live conditions and longer-term signals readable in one place.',
+      'A focused decision-support experiment that makes live conditions and longer-term signals readable in one place.',
     signals: [
       { value: 'Live', label: 'Market data' },
       { value: 'AI', label: 'Context layer' },
@@ -82,19 +136,19 @@ export const projects: Project[] = [
   {
     slug: 'quick-meal-plan',
     title: 'QuickMealPlan',
-    eyebrow: 'AI consumer product',
+    eyebrow: 'Side project · AI consumer product',
     image: '/quickmealplan.png',
     description:
       'An AI-powered planning experience that turns preferences into practical menus, grocery lists, and nutrition guidance.',
     technologies: ['Generative AI', 'Product UX', 'Automation'],
     href: 'https://ai-tools-dusky.vercel.app/meal-plan',
-    role: 'Product design · AI workflow · Full-stack engineering',
+    role: 'Independent product · AI workflow · Full-stack engineering',
     challenge:
-      'Meal planning has a deceptively large input space. The experience had to capture real preferences without becoming a long form or producing generic, impractical output.',
+      'Capture real meal preferences without creating a long form or producing generic output.',
     decision:
-      'Translate a small set of human-friendly choices into structured AI context, then return the plan, shopping needs, and nutrition guidance as one coherent workflow.',
+      'Translate a small set of human-friendly choices into structured AI context and one coherent workflow.',
     outcome:
-      'A useful consumer experience that turns a vague intention—eat better this week—into a concrete plan someone can act on.',
+      'A consumer product experiment that turns an intention into a practical weekly plan.',
     signals: [
       { value: 'One flow', label: 'Plan to grocery list' },
       { value: 'Personal', label: 'Preference-aware' },
@@ -105,33 +159,6 @@ export const projects: Project[] = [
       { label: 'Prompt system', detail: 'Structured product context' },
       { label: 'Generation', detail: 'Meals, nutrition, and shopping' },
       { label: 'Household', detail: 'A plan ready to use' },
-    ],
-  },
-  {
-    slug: 'dealer-portal',
-    title: 'Dealer Portal',
-    eyebrow: 'Enterprise analytics',
-    image: '/A_futuristic_AI-driven_dashboard_with_real-time_da.webp',
-    description:
-      'An AI-driven dealer workspace that makes complex financial and operational data clear, timely, and actionable.',
-    technologies: ['React', 'GraphQL', 'Data visualization'],
-    role: 'Technical leadership · Front-end architecture · Data experience',
-    challenge:
-      'Operational and financial signals arrived from multiple systems, forcing dealers to reconcile context before they could make a useful decision.',
-    decision:
-      'Design a GraphQL-backed experience around dealer decisions rather than source systems, with a consistent visual language for health, risk, and opportunity.',
-    outcome:
-      'A unified workspace designed to reduce cognitive overhead and move teams from data collection toward timely action.',
-    signals: [
-      { value: 'Unified', label: 'Operational view' },
-      { value: 'GraphQL', label: 'Data contract' },
-      { value: 'AI', label: 'Decision support' },
-    ],
-    architecture: [
-      { label: 'Source systems', detail: 'Financial and operational data' },
-      { label: 'GraphQL', detail: 'Unified domain contract' },
-      { label: 'React', detail: 'Decision-oriented workspace' },
-      { label: 'Dealer', detail: 'Risk and opportunity in context' },
     ],
   },
   {
@@ -147,22 +174,6 @@ export const projects: Project[] = [
     decision:
       'Treat Salesforce as an operational backbone while keeping the student experience focused.',
     outcome: 'Connected course progress and organizational workflows.',
-    signals: [],
-    architecture: [],
-  },
-  {
-    slug: 'adtech-intelligence',
-    title: 'AdTech Intelligence',
-    eyebrow: 'Marketing automation',
-    image: '/A_high-tech_AdTech_platform_dashboard_with_AI-driv.webp',
-    description:
-      'A campaign intelligence platform connecting analytics, automation, and customer signals for better decisions.',
-    technologies: ['Google Analytics', 'AI', 'Cloud'],
-    role: 'Engineering lead',
-    challenge: 'Connect fragmented campaign signals.',
-    decision:
-      'Create a shared intelligence layer across analytics and automation.',
-    outcome: 'A clearer view of campaign performance.',
     signals: [],
     architecture: [],
   },
@@ -183,7 +194,21 @@ export const projects: Project[] = [
   },
 ];
 
-export const featuredProjects = projects.slice(0, 3);
+const bySlug = (slug: string) =>
+  projects.find((project) => project.slug === slug)!;
+
+export const featuredProjects = [
+  bySlug('john-maxwell-platform'),
+  bySlug('agora-data-platform'),
+  bySlug('model-b-platform'),
+];
+
+export const sideProjects = [bySlug('live-btc-now'), bySlug('quick-meal-plan')];
+
+export const additionalCareerProjects = projects.filter(
+  (project) =>
+    !featuredProjects.includes(project) && !sideProjects.includes(project)
+);
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);

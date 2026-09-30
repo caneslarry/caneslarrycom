@@ -113,6 +113,181 @@
     0 0 0 1px rgba(34, 211, 238, 0.02);
 }
 
+.side-project-card {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.022);
+  padding: 0.7rem;
+  transition:
+    border-color 250ms ease,
+    background 250ms ease,
+    transform 250ms ease;
+}
+.side-project-card:hover {
+  border-color: rgba(103, 232, 249, 0.22);
+  background: rgba(255, 255, 255, 0.038);
+  transform: translateY(-3px);
+}
+
+.ai-frontier {
+  background:
+    radial-gradient(
+      circle at 12% 15%,
+      rgba(34, 211, 238, 0.08),
+      transparent 28rem
+    ),
+    radial-gradient(
+      circle at 88% 75%,
+      rgba(99, 102, 241, 0.08),
+      transparent 30rem
+    ),
+    #04070c;
+  padding-bottom: 3rem;
+}
+.ai-frontier-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, #000, transparent 90%);
+  pointer-events: none;
+}
+.text-outline-soft {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(165, 243, 252, 0.62);
+}
+.ai-practice {
+  position: relative;
+  overflow: hidden;
+  background: rgba(5, 8, 13, 0.96);
+  padding: 1.75rem;
+  transition: background 300ms ease;
+}
+.ai-practice::after {
+  position: absolute;
+  right: -5rem;
+  top: -5rem;
+  height: 12rem;
+  width: 12rem;
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.06);
+  filter: blur(45px);
+  content: '';
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+.ai-practice:hover {
+  background: rgba(9, 15, 24, 0.98);
+}
+.ai-practice:hover::after {
+  opacity: 1;
+}
+.ai-practice-icon {
+  display: flex;
+  height: 2.75rem;
+  width: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 0.85rem;
+  background: rgba(34, 211, 238, 0.08);
+  color: #67e8f9;
+  transition: 300ms ease;
+}
+.ai-practice:hover .ai-practice-icon {
+  border-color: rgba(34, 211, 238, 0.42);
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.1);
+  transform: translateY(-2px);
+}
+.ai-capability {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.025);
+  padding: 0.35rem 0.65rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+.ai-terminal {
+  overflow: hidden;
+  border: 1px solid rgba(103, 232, 249, 0.12);
+  border-radius: 1.25rem;
+  background: rgba(2, 6, 15, 0.72);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(12px);
+}
+.ai-terminal-bar {
+  display: flex;
+  height: 2.4rem;
+  align-items: center;
+  gap: 0.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 0 1rem;
+}
+.ai-terminal-bar span {
+  height: 0.38rem;
+  width: 0.38rem;
+  border-radius: 50%;
+  background: #334155;
+}
+.ai-terminal-bar span:first-child {
+  background: #22d3ee;
+  box-shadow: 0 0 9px rgba(34, 211, 238, 0.65);
+}
+.ai-terminal-bar p {
+  margin-left: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  color: #475569;
+}
+.ai-ecosystem {
+  overflow: hidden;
+  border-y: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.018);
+  padding: 0.85rem 0;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+}
+.ai-ecosystem-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+}
+.ai-ecosystem-track span {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-right: 1.5rem;
+  white-space: nowrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+.ai-ecosystem-track i {
+  color: rgba(34, 211, 238, 0.5);
+  font-size: 0.42rem;
+  font-style: normal;
+}
+
+@media (min-width: 640px) {
+  .ai-practice {
+    padding: 2.25rem;
+  }
+}
+
 .project-window-bar {
   display: flex;
   height: 2.5rem;

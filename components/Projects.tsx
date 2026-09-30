@@ -5,7 +5,12 @@ import { ArrowRight, ArrowUpRight, CornerDownRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
-import { featuredProjects, projects, type Project } from '../lib/projects';
+import {
+  additionalCareerProjects,
+  featuredProjects,
+  sideProjects,
+  type Project,
+} from '../lib/projects';
 
 function ProjectStory({ project, index }: { project: Project; index: number }) {
   const ref = useRef<globalThis.HTMLDivElement>(null);
@@ -134,14 +139,14 @@ export default function Projects() {
       <div className="section-shell pb-0">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Selected work</p>
+            <p className="eyebrow">Selected career work</p>
             <h2 className="section-title">The thinking behind the build.</h2>
           </div>
           <div>
             <p className="section-intro">
-              Selected systems spanning enterprise scale, measurable growth,
-              applied AI, and product engineering—along with the decisions and
-              outcomes behind each build.
+              Professional work across John Maxwell Team, Agora Data, and Model
+              B—along with the decisions, leadership, and outcomes behind each
+              build.
             </p>
             <p className="mt-5 flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-slate-600">
               <CornerDownRight size={14} /> Scroll through the decisions
@@ -157,17 +162,17 @@ export default function Projects() {
         <div className="pb-20 pt-8 sm:pb-28 sm:pt-12">
           <div className="mb-8 flex items-end justify-between">
             <div>
-              <p className="eyebrow">More systems</p>
+              <p className="eyebrow">Additional career work</p>
               <h3 className="font-display mt-3 text-3xl font-bold text-white">
                 Additional impact.
               </h3>
             </div>
             <span className="hidden font-mono text-[0.65rem] text-slate-600 sm:block">
-              04 — 07
+              04 — 05
             </span>
           </div>
           <div className="grid gap-px overflow-hidden rounded-3xl border border-white/[0.09] bg-white/[0.09] md:grid-cols-3">
-            {projects.slice(3).map((project) => (
+            {additionalCareerProjects.map((project) => (
               <article
                 key={project.slug}
                 className="group bg-[#05080d] p-7 transition duration-300 hover:bg-slate-900/80"
@@ -189,6 +194,71 @@ export default function Projects() {
                 <span className="mt-8 inline-flex items-center gap-2 text-xs font-semibold text-slate-500 transition group-hover:text-cyan-300">
                   System snapshot <ArrowRight size={14} />
                 </span>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="border-t border-white/[0.09] pb-20 pt-16 sm:pb-28 sm:pt-20">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">Side projects</p>
+              <h3 className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                Built to explore.
+              </h3>
+            </div>
+            <p className="section-intro">
+              Independent product experiments where I test ideas, emerging AI
+              patterns, and focused consumer experiences outside my career work.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {sideProjects.map((project) => (
+              <article key={project.slug} className="side-project-card group">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-slate-900">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} side project interface`}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition duration-700 group-hover:scale-[1.025]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#05080d]/70 via-transparent to-transparent" />
+                  <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-slate-950/75 px-3 py-1.5 font-mono text-[0.58rem] uppercase tracking-[0.14em] text-cyan-200 backdrop-blur">
+                    Independent build
+                  </span>
+                </div>
+                <div className="p-2 pt-6 sm:p-3 sm:pt-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="eyebrow">{project.eyebrow}</p>
+                      <h4 className="font-display mt-3 text-2xl font-bold text-white">
+                        {project.title}
+                      </h4>
+                    </div>
+                    {project.href && (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Visit ${project.title}`}
+                        className="icon-button shrink-0"
+                      >
+                        <ArrowUpRight size={17} />
+                      </a>
+                    )}
+                  </div>
+                  <p className="mt-4 max-w-xl text-sm leading-6 text-slate-400">
+                    {project.description}
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {project.technologies.map((technology) => (
+                      <span key={technology} className="tech-tag">
+                        {technology}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </article>
             ))}
           </div>
