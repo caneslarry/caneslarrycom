@@ -4,7 +4,6 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowDownRight, ArrowUpRight, Asterisk, MapPin } from 'lucide-react';
 import { CSSProperties, MouseEvent } from 'react';
 
-const principles = ['I design systems.', 'I lead teams.', 'I ship products.'];
 const capabilities = [
   { index: '01', label: '20+ years engineering' },
   { index: '02', label: 'Hands-on technical lead' },
@@ -408,16 +407,6 @@ export default function Hero() {
         <div className="pointer-events-none absolute bottom-28 left-0 hidden -translate-x-full -rotate-90 items-center gap-3 text-[0.6rem] font-bold uppercase tracking-[0.24em] text-slate-600 xl:flex">
           <span>Scroll to explore</span>
           <span className="block h-px w-10 bg-slate-700" />
-        </div>
-      </div>
-      <div className="principle-marquee" aria-label="Working principles">
-        <div className="principle-track">
-          {[...principles, ...principles].map((principle, index) => (
-            <span key={`${principle}-${index}`}>
-              {principle}
-              <i>✦</i>
-            </span>
-          ))}
         </div>
       </div>
     </section>
