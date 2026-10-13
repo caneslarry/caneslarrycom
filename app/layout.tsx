@@ -1,9 +1,10 @@
 import '../styles/globals.css';
+import '../styles/studio.css';
 
 export const metadata = {
-  title: 'Larry Hussey | Senior Software Engineer & Team Lead',
+  title: 'Larry Hussey | Independent AI Engineering for Small Business',
   description:
-    'Senior software engineer and team lead building scalable products, practical AI, cloud architecture, and high-performing engineering teams.',
+    'Practical AI tools, connected workflows, and custom software for small businesses. Work directly with Larry Hussey, an experienced hands-on engineer.',
 };
 
 export default function RootLayout({
