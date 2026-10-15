@@ -119,7 +119,7 @@ export default function HomePage() {
             </p>
             <div className="studio-hero-actions">
               <Link
-                className="studio-button studio-button-lime"
+                className="studio-button studio-button-accent"
                 href="/services"
               >
                 See what I can build <ArrowUpRight size={19} />

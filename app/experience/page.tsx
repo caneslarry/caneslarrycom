@@ -223,7 +223,7 @@ export default function ExperiencePage() {
                 business, I&apos;m glad to talk through what you need.
               </p>
               <a
-                className="studio-button studio-button-lime"
+                className="studio-button studio-button-accent"
                 href="mailto:me@caneslarry.com?subject=Let's%20talk%20about%20working%20together"
               >
                 Get in touch <ArrowUpRight size={19} />

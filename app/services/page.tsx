@@ -205,7 +205,7 @@ export default function ServicesPage() {
                 concrete next step.
               </p>
               <a
-                className="studio-button studio-button-lime"
+                className="studio-button studio-button-accent"
                 href="mailto:me@caneslarry.com?subject=Here's%20the%20business%20problem%20I'd%20like%20to%20solve"
               >
                 Tell me about it <ArrowUpRight size={19} />
